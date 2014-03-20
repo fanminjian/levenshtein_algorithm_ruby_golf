@@ -1,1 +1,1 @@
-def d(o,p)f,s=[o,p].map{|s|s.unpack("U*")};u=f.size;w=s.size;q=[(0..u).to_a];(1..w).map{|j|q<<[j]+[0]*(u)};(1..w).map{|i|(1..u).map{|j|q[i][j]=f[j-1]==s[i-1] ? q[i-1][j-1]:[q[i-1][j],q[i][j-1],q[i-1][j-1],].min+1}};q.last.last;end;$<.map{|l|a,b=l.split;p d a,b}
+def d(o,p)f,s=[o,p].map{|s|s.unpack("U*")};u=f.size;w=s.size;q=[(0..u).to_a];(1..w).map{|j|q<<[j]+[0]*(u)};(1..w).map{|i|(1..u).map{|j|q[i][j]=f[j-1]==s[i-1] ? q[i-1][j-1]:[q[i-1][j],q[i][j-1],q[i-1][j-1],].min+1}};q[w][u];end;$<.map{|l|a,b=l.split;p d a,b}
