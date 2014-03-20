@@ -1,19 +1,13 @@
-def d(str1, str2)
-  first, second = [str1, str2].map{ |str| str.encode(Encoding::UTF_8).unpack("U*") }
-  n = first.size
-  m = second.size
-  return m if n.zero?
-  return n if m.zero?
-
-  ma = [(0..first.size).to_a]
-  (1..second.size).each {|j| ma << [j] + [0] * (first.size) }
-
-  (1..second.size).each { |i|
-    (1..first.size).each { |j|
-      ma[i][j] = first[j-1] == second[i-1] ? ma[i-1][j-1] : [ma[i-1][j],ma[i][j-1],ma[i-1][j-1],].min + 1
+def d(o, p)
+  f, s = [o, p].map{ |s| s.encode(Encoding::UTF_8).unpack("U*") }
+  q = [(0..f.size).to_a]
+  (1..s.size).each {|j| q << [j] + [0] * (f.size) }
+  (1..s.size).each { |i|
+    (1..f.size).each { |j|
+      q[i][j] = f[j-1] == s[i-1] ? q[i-1][j-1] : [q[i-1][j],q[i][j-1],q[i-1][j-1],].min + 1
     }
   }
-  return ma.last.last
+  q.last.last
 end
 
 while l = gets do
